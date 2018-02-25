@@ -45,10 +45,11 @@ int main(int argc, char* argv[]){
         //Borders
         double left = 0, right = 1;
         // Number of parts if not given
-        int N = 10e6;
+        int N = 1e6;
         if (argc > 1){
             N = atoi(argv[1]);
         }
+	//printf("N = %d\n", N);
 
         double h = (right - left)/N;
         lims[2] = h;
@@ -104,10 +105,10 @@ int main(int argc, char* argv[]){
 
         lims[0] = 0;
         lims[1] = 1;
-        //printf("Non-parallel integral: %.16lf\n", trapezium(f, lims[0], lims[1], lims[2]));
-
+	S = trapezium(f, lims[0], lims[1], lims[2]);
         clock_t time_end = clock();
         double seconds = (double)(time_end - time_start) / CLOCKS_PER_SEC;
+	//printf("Non-parallel integral: %.16lf\n", S);
         //printf("#%d Total non-parallel time: %lf\n", id, seconds);
     }
 
