@@ -27,19 +27,19 @@ double trapezium(double (*f)(double), double from, double to, double h){
 }
 
 int main(int argc, char* argv[]){
-	int id, size;
+    int id, size;
     MPI_Status status;
-	MPI_Init(&argc, &argv);
+    MPI_Init(&argc, &argv);
 
     double begin, end, total;
 
-	MPI_Comm_size(MPI_COMM_WORLD, &size);
-	MPI_Comm_rank(MPI_COMM_WORLD, &id);
-	
+    MPI_Comm_size(MPI_COMM_WORLD, &size);
+    MPI_Comm_rank(MPI_COMM_WORLD, &id);
+
     // Init borders of integration and step
     double lims[3];
 
-	if (id == size - 1){
+    if (id == size - 1){
         begin = MPI_Wtime();
         
         //Borders
@@ -49,7 +49,7 @@ int main(int argc, char* argv[]){
         if (argc > 1){
             N = atoi(argv[1]);
         }
-	//printf("N = %d\n", N);
+        //printf("N = %d\n", N);
 
         double h = (right - left)/N;
         lims[2] = h;
@@ -70,10 +70,10 @@ int main(int argc, char* argv[]){
 
         lims[0] = right - h*d.quot;
         lims[1] = right;
-	}
+    }
     else{
-		MPI_Recv(lims, 3, MPI_DOUBLE, size - 1, DUMMY_TAG, MPI_COMM_WORLD, &status);
-    }			
+        MPI_Recv(lims, 3, MPI_DOUBLE, size - 1, DUMMY_TAG, MPI_COMM_WORLD, &status);
+    }
 
     // Accumulating partial summs
     double S = 0;
@@ -98,17 +98,17 @@ int main(int argc, char* argv[]){
         MPI_Send(&S, 1, MPI_DOUBLE, size - 1, DUMMY_TAG, MPI_COMM_WORLD);
     }
 
-	MPI_Finalize();
+    MPI_Finalize();
 
     if (id == size-1){
         clock_t time_start = clock();
 
         lims[0] = 0;
         lims[1] = 1;
-	S = trapezium(f, lims[0], lims[1], lims[2]);
+        S = trapezium(f, lims[0], lims[1], lims[2]);
         clock_t time_end = clock();
         double seconds = (double)(time_end - time_start) / CLOCKS_PER_SEC;
-	//printf("Non-parallel integral: %.16lf\n", S);
+        //printf("Non-parallel integral: %.16lf\n", S);
         //printf("#%d Total non-parallel time: %lf\n", id, seconds);
     }
 

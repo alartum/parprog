@@ -2,7 +2,7 @@
 
 if [[ -z "$1" ]]
 then
-	echo "Usage: timeit [minimum process number] [maximum process number] [executable] {parameters}"
+    echo "Usage: timeit [minimum process number] [maximum process number] [executable] {parameters}"
 	exit
 fi
 
