@@ -1,6 +1,6 @@
 CC=mpicc
 CFLAGS=-std=c11 -O3
-SOURCE=integral
+SOURCE=better_integral
 
 all: $(SOURCE).out
 
