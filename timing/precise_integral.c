@@ -18,8 +18,8 @@ double trapezium(double (*f)(double), long long from, long long to, double h){
     double S = 0;
    
     S += (f(h*from)+f(h*to))/2;
-    for (long long i = from + 1; i < to - 1; i ++){
-        S += f(h*i) + f(h*(i+1));
+    for (long long i = from + 1; i < to; i ++){
+        S += f(h*i);
     }
 
     return S*h;
@@ -82,7 +82,7 @@ int main(int argc, char* argv[]){
         //printf("Parallel integral: %.16lf\n", S);
         total = end - begin;
         //printf("#%d Total parallel time: %.16lf\n", id, total);
-        printf("%.16lf\n", total);
+        printf("%lf\n", total);
     } 
     if (id == 0){
         begin = MPI_Wtime();

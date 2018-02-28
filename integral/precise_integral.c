@@ -18,8 +18,8 @@ double trapezium(double (*f)(double), long long from, long long to, double h){
     double S = 0;
    
     S += (f(h*from)+f(h*to))/2;
-    for (long long i = from + 1; i < to - 1; i ++){
-        S += f(h*i) + f(h*(i+1));
+    for (long long i = from + 1; i < to; i ++){
+        S += f(h*i);
     }
 
     return S*h;
