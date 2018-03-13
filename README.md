@@ -1,5 +1,7 @@
 # Parallel Programming
 
+View _Jupyter Notebook_ files with [__Nbviewer__](https://nbviewer.jupyter.org/github/alartum/parprog/tree/master/) to be able to see animations.
+
 Directory | Contents
 ----------|---------
 timing    | Scripts for average execution time measurement. Jobs are loaded with _TORQUE_ resource manager.  
