@@ -83,7 +83,7 @@ void recv_borders(int id, int size, int n, double* u, MPI_Status* status){
     }
 }
 
-void array_print(int id, int n, double t, double* u){
+void array_print_debug(int id, int n, double t, double* u){
     char info[1000];
     int n_written = sprintf(info, "#%d [t=%g]", id, t);
     n_written += sprintf(&info[n_written], " (%g)", u[0]);
@@ -95,9 +95,20 @@ void array_print(int id, int n, double t, double* u){
     printf(info);
 }
 
+void array_print(int id, int n, double t, double* u){
+    char info[1000];
+    int n_written = 0;
+    n_written += sprintf(&info[n_written], "%g, ", u[0]);
+    for (int i = 1; i < n-1; i++){
+        n_written += sprintf(&info[n_written], "%g, ", u[i]);
+    }
+    n_written += sprintf(&info[n_written], "%g\n", u[n-1]);
+    printf(info);
+}
+
 int main(int argc, char* argv[]){
 	// Predefines
-    double T = 1e-4;
+    double T = 1e-2;
     double l = 1;
     double k = 1;
     // Number of parts
@@ -139,7 +150,14 @@ int main(int argc, char* argv[]){
     if (id == size-1) u_old[n-1] = 0;
 
     double t = 0;
+    int nticks = 10000;
+    int tick = 0;
+    
     while (t < T + dt/2){
+        // if (tick) array_print(id, n, t, u);
+        // tick += 1;
+        // tick %= nticks;
+        
         t += dt;
         for (int i = 1; i < n-1; i++){
             u[i] = u_new(&u_old[i-1], k, h, dt);
