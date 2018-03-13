@@ -25,7 +25,7 @@ done
 
 #Accumulating timings
 ACCUM="results.csv"
-echo "np, ms" > $ACCUM
+echo "np, s" > $ACCUM
 
 for (( i = $1; i <= $2; i++ ))
 do

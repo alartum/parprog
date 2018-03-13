@@ -1,6 +1,6 @@
 #!/bin/bash
 
-#PBS -l walltime=00:02:00,nodes=4:ppn=4
+#PBS -l walltime=00:05:00,nodes=4:ppn=4
 #PBS -N timing
 #PBS -q batch
 
