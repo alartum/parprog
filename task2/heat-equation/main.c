@@ -108,7 +108,7 @@ void array_print(int id, int n, double t, double* u){
 
 int main(int argc, char* argv[]){
 	// Predefines
-    double T = 1e-2;
+    double T = 1e-1;
     double l = 1;
     double k = 1;
     // Number of parts
