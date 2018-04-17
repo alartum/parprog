@@ -67,8 +67,8 @@ int main(int argc, char* argv[]){
     elapsed = end.tv_sec - begin.tv_sec;
     elapsed += (end.tv_nsec - begin.tv_nsec)/1000000000.0;
 
-    // printf("Time: %g s\n", elapsed);
-    // printf("Integral: %g\n", M_PI*sum/TOTAL);
-    printf("%.16lf\n", elapsed);
+    printf("Time: %g s\n", elapsed);
+    printf("Integral: %g\n", M_PI*sum/TOTAL);
+    //printf("%.16lf\n", elapsed);
     return 0;
 }

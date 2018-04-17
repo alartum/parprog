@@ -7,7 +7,7 @@
 #include <time.h>
 
 double HITS = 0;
-#define TOTAL 1000000000
+#define TOTAL 100000000
 sem_t sem;
 
 typedef struct arg_t { 
