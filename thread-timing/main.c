@@ -254,15 +254,15 @@ int main(int argc, char* argv[]){
     elapsed = end.tv_sec - begin.tv_sec;
     elapsed += (end.tv_nsec - begin.tv_nsec)/1000000000.0;
 
-    printf("Time: %g s\n", elapsed);
-    printf("Evaluation result:\n");
-    int N = 10;
-    for (int i = 0; i < N; i++){
-        int n = npoints/N;
-        double u_pr = u_precise(c, T + dt, a + h*i*n);
-        double err = fabs(u[i*n] - u_pr);
-        printf("x = %g  u = %g  u_pr = %g  err = %g\n", a + h*i*n, u[i*n], u_pr, err);
-    }
+    printf("%g\n", elapsed);
+   // printf("Evaluation result:\n");
+   // int N = 10;
+   // for (int i = 0; i < N; i++){
+   //     int n = npoints/N;
+   //     double u_pr = u_precise(c, T + dt, a + h*i*n);
+   //     double err = fabs(u[i*n] - u_pr);
+   //     printf("x = %g  u = %g  u_pr = %g  err = %g\n", a + h*i*n, u[i*n], u_pr, err);
+   // }
 
     for (int i = 0; i < nthreads; i++){
         sem_destroy(&is_posted[i]);
